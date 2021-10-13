@@ -1,0 +1,25 @@
+versión y dependencias
+python=3.9.0
+numpy=1.21.0
+
+En el script ejemplo.py se lleva a cabo una representación de una situación donde se codifica una palabra fuente
+y se envia a varias estaciones con canales con fiabilidad variable. En la primera estación suponemos que se produce
+un error en un símbolo de la palabra código recibida, en la segunda en dos, en la tercera en tres... hasta la quinta
+estación. Vemos así las distintas situacion donde es posible recuperar la palabra fuente original, con un número de errores
+inferior o igual a 3 (código 3-corrector) y la detección de 4 errores (código 4-detector). Al producirse más de 4 errores la 
+descodificación por distancia mínima nos da otra palabra distinta de la original.
+
+las funciones de la implementación reciben (y devuelven si se da el caso) cadenas de texto para facilitar su uso desde una sesión interactiva de python.
+Ejemplo de uso:
+
+python
+from golay import descodifica,recuperaPalabraFuente,codifica
+
+codifica("100000000000")
+"100000000000011111111111"
+
+descodifica("100000101000011111111111")
+"100000000000011111111111"
+
+recuperaPalabraFuente(""100000000000011111111111")
+"100000000000011111111111"
